@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00C853</color>
+    <color name="colorPrimaryDark">#0091EA</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+    <color name="birthday">#FF6D00</color>
+    <color name="anniversary">#6200EA</color>
+    <color name="beria">#000000</color>
+    <color name="others">#D50000</color>
+</resources>

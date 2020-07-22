@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:elevation="23dp"
+        app:title=""
+        app:titleTextAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+        app:titleTextColor="#000" />
+
+    <View
+        android:id="@+id/divider_up"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/toolbar"
+        android:background="#B1AEAE" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/divider_up">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/upload_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:hint="Add caption"
+                android:maxHeight="300dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/upload_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/upload_title"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:maxHeight="400dp" />
+
+            <ImageView
+                android:id="@+id/p"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/upload_image"
+                android:layout_marginStart="7dp"
+                android:src="@drawable/upload" />
+
+            <TextView
+                android:id="@+id/pick_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/upload_image"
+                android:layout_toEndOf="@id/p"
+                android:onClick="getPhoto"
+                android:paddingStart="10dp"
+                android:text="Chose photo"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="19sp" />
+
+            <Button
+                android:id="@+id/post_btn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pick_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/post_btn_background"
+                android:onClick="doPost"
+                android:text="Post"
+                android:textColor="#fff"
+                android:textSize="23sp" />
+
+
+            <com.wang.avi.AVLoadingIndicatorView
+                style="@style/AVLoadingIndicatorView"
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:id="@+id/progress"
+                android:visibility="gone"
+                app:indicatorColor="@color/colorPrimaryDark"
+                app:indicatorName="BallSpinFadeLoaderIndicator"
+                app:maxHeight="20dp"
+                app:maxWidth="20dp" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

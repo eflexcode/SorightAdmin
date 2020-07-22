@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/upload"
+        android:icon="@drawable/upload"
+        android:title="Upload" />
+
+    <item
+        android:id="@+id/book"
+        android:icon="@drawable/book3"
+        android:title="By Bookings" />
+
+    <item
+        android:id="@+id/notification"
+        android:icon="@drawable/bell"
+        android:title="Notification" />
+
+    <item
+        android:id="@+id/messages"
+        android:icon="@drawable/mail"
+        android:title="Message" />
+
+</menu>

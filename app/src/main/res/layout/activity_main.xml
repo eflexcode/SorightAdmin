@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:elevation="23dp"
+        app:title=""
+        app:titleTextAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+        app:titleTextColor="#000" />
+
+    <View
+        android:id="@+id/divider_up"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/toolbar"
+        android:background="#B1AEAE" />
+
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/divider"
+        android:layout_below="@id/divider_up" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_above="@id/botton_nav"
+        android:background="#B1AEAE" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/botton_nav"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="?android:windowBackground"
+        app:itemIconTint="@drawable/bvn_background"
+        app:itemTextColor="@drawable/bvn_background"
+        app:labelVisibilityMode="selected"
+        app:menu="@menu/bnv_menu" />
+
+</RelativeLayout>

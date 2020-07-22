@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "706152986400",
+    "firebase_url": "https://soright-9c428.firebaseio.com",
+    "project_id": "soright-9c428",
+    "storage_bucket": "soright-9c428.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706152986400:android:f750661ed74848484ac945",
+        "android_client_info": {
+          "package_name": "com.eflexsoft.soright"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706152986400-4aui3cpg0njunt723stdkio2lh16pvpp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCb6Uqm-mQRfsLIKc208xaftcXkK-SON4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706152986400-4aui3cpg0njunt723stdkio2lh16pvpp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706152986400:android:868493c4c611bda64ac945",
+        "android_client_info": {
+          "package_name": "com.eflexsoft.sorightadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706152986400-4aui3cpg0njunt723stdkio2lh16pvpp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCb6Uqm-mQRfsLIKc208xaftcXkK-SON4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706152986400-4aui3cpg0njunt723stdkio2lh16pvpp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
