@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -105,14 +106,14 @@ public class OrderDetailsActivity extends DaggerAppCompatActivity {
                         progressDialog.show();
 
                         HashMap<String, Object> hashMap = new HashMap<>();
-                        hashMap.put("text", "Your order have taken");
+                        hashMap.put("text", "Your order have taken see in box fo more ");
 
                         HashMap<String, Object> messageMap = new HashMap<>();
                         messageMap.put("senderId", firebaseAuth.getCurrentUser().getUid());
                         messageMap.put("receiverId", id);
                         messageMap.put("imageUrl", "default");
                         messageMap.put("isSeen", "no");
-                        messageMap.put("message", "your order have been taken see inbox");
+                        messageMap.put("message", "your order have been whats the venue");
 
                         DatabaseReference databaseReference1 = firebaseDatabase.getReference("Message")
                                 .child(firebaseAuth.getCurrentUser().getUid());
@@ -120,12 +121,24 @@ public class OrderDetailsActivity extends DaggerAppCompatActivity {
                         DatabaseReference databaseReference2 = firebaseDatabase.getReference("Message")
                                 .child(id);
 
-                        databaseReference1.push().setValue(messageMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    progressDialog.setMessage("messaging user");
-                                }
+                        DatabaseReference chatList1 = firebaseDatabase.getReference("ChatList")
+                                .child(firebaseAuth.getCurrentUser().getUid()).child(id);
+
+                        DatabaseReference chatList2 = firebaseDatabase.getReference("ChatList").child(id)
+                                .child(firebaseAuth.getCurrentUser().getUid());
+
+                        Map<String,String> stringMap = new HashMap<>();
+                        stringMap.put("id",id);
+
+                        Map<String,String> stringMap1 = new HashMap<>();
+                        stringMap1.put("id",firebaseAuth.getCurrentUser().getUid());
+
+                        chatList1.setValue(stringMap);
+                        chatList2.setValue(stringMap1);
+
+                        databaseReference1.push().setValue(messageMap).addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                progressDialog.setMessage("messaging user");
                             }
                         });
 

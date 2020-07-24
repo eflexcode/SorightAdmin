@@ -65,10 +65,10 @@ public class MainActivity extends DaggerAppCompatActivity {
                         fragment = new MyBookingFragment();
                         break;
 
-                    case R.id.notification:
-                        toolbar.setTitle("Notifications");
-                        fragment = new NotificationFragment();
-                        break;
+//                    case R.id.notification:
+//                        toolbar.setTitle("Notifications");
+//                        fragment = new NotificationFragment();
+//                        break;
 
                     case R.id.messages:
                         toolbar.setTitle("Messages");

@@ -16,10 +16,10 @@
         android:icon="@drawable/book3"
         android:title="By Bookings" />
 
-    <item
-        android:id="@+id/notification"
-        android:icon="@drawable/bell"
-        android:title="Notification" />
+<!--    <item-->
+<!--        android:id="@+id/notification"-->
+<!--        android:icon="@drawable/bell"-->
+<!--        android:title="Notification" />-->
 
     <item
         android:id="@+id/messages"
