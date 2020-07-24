@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MessageActivity">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorAccent"
+        app:elevation="12dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="16dp"
+            app:backgroundTint="?android:windowBackground"
+            app:title=""
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+            app:titleTextColor="#000">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:onClick="finish"
+                android:src="@drawable/ic_arrow" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/Pro_pic"
+                android:layout_width="50dp"
+                android:layout_margin="10dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center|start"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:elevation="16dp" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messageRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/divider_up"
+        android:layout_below="@id/bar" />
+
+    <View
+        android:id="@+id/divider_up"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_above="@id/sendBottom"
+        android:background="#B1AEAE" />
+
+    <RelativeLayout
+        android:id="@+id/sendBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:elevation="10dp"
+        android:padding="5dp">
+
+        <ImageButton
+            android:id="@+id/send"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:onClick="sendMessage"
+            android:src="@drawable/ic_send_hash" />
+
+        <EditText
+            android:id="@+id/messageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/send"
+            android:layout_toEndOf="@id/pick_image"
+            android:hint="Say Hello word"
+            android:maxHeight="150dp"
+            android:text=""
+            android:textColor="#000"
+            android:textColorHint="#898A8C"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/pick_image"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_image_pick" />
+
+    </RelativeLayout>
+</RelativeLayout>

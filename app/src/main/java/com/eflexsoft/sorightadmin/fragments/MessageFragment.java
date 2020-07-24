@@ -1,65 +1,148 @@
 package com.eflexsoft.sorightadmin.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.eflexsoft.sorightadmin.R;
+import com.eflexsoft.sorightadmin.adapters.ChatLisAdapter;
+import com.eflexsoft.sorightadmin.model.ChatList;
+import com.eflexsoft.sorightadmin.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.wang.avi.AVLoadingIndicatorView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MessageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MessageFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import javax.inject.Inject;
 
-    public MessageFragment() {
-        // Required empty public constructor
-    }
+import dagger.android.support.DaggerFragment;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MessageFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MessageFragment newInstance(String param1, String param2) {
-        MessageFragment fragment = new MessageFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+public class MessageFragment extends DaggerFragment {
+
+    RecyclerView recyclerView;
+
+    @Inject
+    FirebaseDatabase firebaseDatabase;
+
+    @Inject
+    FirebaseAuth firebaseAuth;
+
+    AVLoadingIndicatorView avLoadingIndicatorView;
+
+    List<ChatList> chatListList = new ArrayList<>();
+    List<User> userList = new ArrayList<>();
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        try {
+            DatabaseReference databaseReference = firebaseDatabase.getReference("ChatList")
+                    .child(firebaseAuth.getCurrentUser().getUid());
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    chatListList.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        ChatList chatList = dataSnapshot.getValue(ChatList.class);
+                        chatListList.add(chatList);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }catch (Exception e){
+            Toast.makeText(getContext(), "your not logged in", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_message, container, false);
+        View view = inflater.inflate(R.layout.fragment_message, container, false);
+
+        recyclerView = view.findViewById(R.id.messageRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        ChatLisAdapter chatLisAdapter = new ChatLisAdapter(getContext());
+        recyclerView.setAdapter(chatLisAdapter);
+
+        avLoadingIndicatorView = view.findViewById(R.id.progress);
+        avLoadingIndicatorView.setVisibility(View.VISIBLE);
+
+        try {
+            DatabaseReference userReference = firebaseDatabase.getReference("Users");
+            userReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    userList.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        User user = dataSnapshot.getValue(User.class);
+                        for (ChatList chatList : chatListList){
+                            assert user != null;
+                            if (chatList.getId().equals(user.getId())) {
+                                userList.add(user);
+                            }
+                            chatLisAdapter.setUserList(userList);
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }catch (Exception e){
+            Toast.makeText(getContext(), "your not logged in", Toast.LENGTH_SHORT).show();
+        }
+
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    Thread.sleep(5000);
+                    avLoadingIndicatorView.setVisibility(View.VISIBLE);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                avLoadingIndicatorView.setVisibility(View.GONE);
+
+
+            }
+
+        }.execute();
+
+        return view;
     }
 }

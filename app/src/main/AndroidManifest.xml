@@ -10,10 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OrderDetailsActivity"
-            android:theme="@style/MainActivityTheme"
+        <activity
+            android:name=".MessageActivity"
             android:screenOrientation="portrait"
-            ></activity>
+            android:theme="@style/MainActivityTheme" />
+        <activity
+            android:name=".OrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MainActivityTheme" />
         <activity
             android:name=".FullImageActivity"
             android:theme="@style/FullTheme" />

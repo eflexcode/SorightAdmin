@@ -3,16 +3,15 @@ package com.eflexsoft.sorightadmin.di.ui;
 import com.eflexsoft.sorightadmin.FullImageActivity;
 import com.eflexsoft.sorightadmin.LoginActivity;
 import com.eflexsoft.sorightadmin.MainActivity;
+import com.eflexsoft.sorightadmin.MessageActivity;
 import com.eflexsoft.sorightadmin.OrderDetailsActivity;
 import com.eflexsoft.sorightadmin.SignUpActivity;
 import com.eflexsoft.sorightadmin.SplashActivity;
 import com.eflexsoft.sorightadmin.UploadActivity;
 import com.eflexsoft.sorightadmin.fragments.HomeFragment;
+import com.eflexsoft.sorightadmin.fragments.MessageFragment;
 import com.eflexsoft.sorightadmin.fragments.MyBookingFragment;
-import com.eflexsoft.sorightadmin.fragments.UploadFragment;
 
-import dagger.Binds;
-import dagger.BindsInstance;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -45,5 +44,11 @@ public abstract class ActivityFragmentModel {
 
     @ContributesAndroidInjector
     abstract OrderDetailsActivity orderDetailsActivity();
+
+    @ContributesAndroidInjector
+    abstract MessageFragment messageFragment();
+
+    @ContributesAndroidInjector
+    abstract MessageActivity messageActivity();
 
 }
