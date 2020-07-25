@@ -1,6 +1,10 @@
 package com.eflexsoft.sorightadmin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +17,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.eflexsoft.sorightadmin.adapters.MessageAdapter;
+import com.eflexsoft.sorightadmin.model.Message;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -31,6 +43,7 @@ public class MessageActivity extends DaggerAppCompatActivity {
     CircleImageView propic;
     TextView name;
 
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Inject
     FirebaseAuth firebaseAuth;
@@ -42,6 +55,12 @@ public class MessageActivity extends DaggerAppCompatActivity {
     Intent intent;
     String username;
     String imageUrl;
+
+    int size = 50;
+
+    List<Message> messageList = new ArrayList<>();
+
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +79,13 @@ public class MessageActivity extends DaggerAppCompatActivity {
         imageUrl = intent.getStringExtra("image");
 
         name.setText(username);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+
+        MessageAdapter messageAdapter = new MessageAdapter(this, imageUrl);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(messageAdapter);
 
         if (imageUrl.equals("default")) {
             propic.setImageResource(R.drawable.no_p);
@@ -88,7 +114,57 @@ public class MessageActivity extends DaggerAppCompatActivity {
 
             }
         });
+        Query databaseReference = firebaseDatabase.getReference("Message").child(firebaseAuth.getCurrentUser().getUid()).limitToLast(size);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                messageList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Message message = dataSnapshot.getValue(Message.class);
+                    if (message.getSenderId().equals(firebaseAuth.getCurrentUser().getUid()) && message.getReceiverId().equals(id)
+                            || message.getSenderId().equals(id) && message.getReceiverId().equals(firebaseAuth.getCurrentUser().getUid())) {
+                        messageList.add(message);
+                    }
+                    messageAdapter.setMessageList(messageList);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                size = size + 50;
+
+                Query databaseReference = firebaseDatabase.getReference("Message").child(firebaseAuth.getCurrentUser().getUid()).limitToLast(size);
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        messageList.clear();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Message message = dataSnapshot.getValue(Message.class);
+                            if (message.getSenderId().equals(firebaseAuth.getCurrentUser().getUid()) && message.getReceiverId().equals(id)
+                                    || message.getSenderId().equals(id) && message.getReceiverId().equals(firebaseAuth.getCurrentUser().getUid())) {
+                                messageList.add(message);
+                            }
+                            messageAdapter.setMessageListupdate(messageList);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     public void sendMessage(View view) {
@@ -118,6 +194,7 @@ public class MessageActivity extends DaggerAppCompatActivity {
         databaseReference2.push().setValue(messageMap);
 
         messageText.setText("");
+
 
     }
 

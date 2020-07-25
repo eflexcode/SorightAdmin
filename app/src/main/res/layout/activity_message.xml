@@ -54,12 +54,22 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messageRecycler"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/swipe"
         android:layout_above="@id/divider_up"
-        android:layout_below="@id/bar" />
+        android:layout_below="@id/bar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messageRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/divider_up"
+            android:layout_below="@id/bar" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <View
         android:id="@+id/divider_up"

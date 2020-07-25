@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="false"
+    android:layout_gravity="end"
+    android:layout_margin="7dp">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pro_pic"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/no_p"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/messageTextChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/me_chat"
+        android:padding="7dp"
+        android:layout_alignParentEnd="true"
+        android:text=""
+        android:textColor="#fff"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/imageChat"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/me_chat_image"
+        android:padding="5dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/isseen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/messageTextChat"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="end"
+        android:text=""
+        android:textColor="#535455"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>
