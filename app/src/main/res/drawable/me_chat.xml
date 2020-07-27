@@ -2,6 +2,6 @@
 <shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <solid android:color="@color/colorPrimaryDark"/>
-        <corners android:radius="30dp" android:bottomRightRadius="0dp"/>
+        <corners android:radius="20dp" android:bottomRightRadius="0dp"/>
 
 </shape>

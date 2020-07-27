@@ -113,6 +113,7 @@
             android:id="@+id/pick_image"
             android:layout_width="40dp"
             android:layout_height="30dp"
+            android:onClick="sendImage"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_image_pick" />
 

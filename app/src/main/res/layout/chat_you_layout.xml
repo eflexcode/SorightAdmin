@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_alignParentEnd="true"
     android:layout_gravity="start"
-    android:layout_margin="7dp">
+    android:layout_margin="2dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pro_pic"
         android:layout_width="30dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
-        android:layout_margin="5dp"
+        android:layout_margin="2dp"
         android:visibility="visible" />
 
     <TextView
@@ -22,6 +22,7 @@
         android:background="@drawable/you_chat"
         android:padding="7dp"
         android:text=""
+        android:textIsSelectable="true"
         android:textColor="#fff"
         android:textSize="14sp" />
 
@@ -30,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@drawable/you_chat_image"
-        android:padding="5dp"
+        android:padding="10dp"
         android:visibility="gone" />
 
     <TextView
@@ -38,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/pro_pic"
         android:text=""
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="1dp"
         android:textStyle="bold"
         android:visibility="gone"
         android:id="@+id/isseen"

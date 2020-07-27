@@ -1,6 +1,7 @@
 package com.eflexsoft.sorightadmin.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     Context context;
     String imageUrl;
 
-    public MessageAdapter(Context context, String imageUrl) {
+    public MessageAdapter(List<Message> messageList, Context context, String imageUrl) {
+        this.messageList = messageList;
         this.context = context;
         this.imageUrl = imageUrl;
     }
@@ -55,14 +57,18 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         Message message = messageList.get(position);
 
         if (position == messageList.size() - 1) {
-            holder.isSeen.setVisibility(View.VISIBLE);
-            if (message.getIsSeen().equals("yes")) {
-                holder.isSeen.setText("seen");
+            if (message.getSenderId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                holder.isSeen.setVisibility(View.VISIBLE);
+                if (message.getIsSeen().equals("yes")) {
+                    holder.isSeen.setText("seen");
+                    holder.isSeen.setTextColor(Color.parseColor("#00C853"));
+                } else {
+                    holder.isSeen.setText("sent");
+                    holder.isSeen.setTextColor(Color.parseColor("#4C4A4A"));
+                }
             } else {
-                holder.isSeen.setText("sent");
+                holder.isSeen.setVisibility(View.GONE);
             }
-        } else {
-            holder.isSeen.setVisibility(View.GONE);
         }
 
         holder.message.setText(message.getMessage());
@@ -73,25 +79,24 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             Glide.with(context).load(imageUrl).into(holder.propic);
         }
 
-        if (message.getImageUrl().equals("default")){
+        if (message.getImageUrl().equals("default")) {
             holder.message.setVisibility(View.VISIBLE);
             holder.messageImage.setVisibility(View.GONE);
-        }else {
+        } else {
             Glide.with(context).load(message.getImageUrl()).into(holder.messageImage);
             holder.message.setVisibility(View.GONE);
             holder.messageImage.setVisibility(View.VISIBLE);
+            holder.isSeen.setVisibility(View.GONE);
+            holder.propic.setVisibility(View.GONE);
         }
 
     }
 
-    public void setMessageList(List<Message> messageList) {
-        this.messageList = messageList;
-      notifyDataSetChanged();
-    }
     public void setMessageListupdate(List<Message> messageList) {
         this.messageList = messageList;
-       notifyDataSetChanged();
+        notifyDataSetChanged();
     }
+
     @Override
     public int getItemCount() {
         return messageList.size();
