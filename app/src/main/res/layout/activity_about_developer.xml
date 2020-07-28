@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutDeveloperActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        android:id="@+id/developersImage"
+        android:src="@drawable/developer_image"/>
+
+    <TextView
+        android:id="@+id/developerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:padding="10dp"
+        android:layout_marginTop="-10dp"
+        android:text="Eze Larry Ifeanyi"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+        android:textColor="#040404"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_below="@id/developersImage" />
+
+    <TextView
+        android:id="@+id/developerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:padding="10dp"
+        android:layout_marginTop="-20dp"
+        android:text="Native Android Developer (Android Studio)"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+        android:textColor="#040404"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_below="@id/developerName" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/developerTitle"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/developerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:text="Hi I love coding looking to learn more from job industry I know a lot of android framework like retrofit ,Firebase ,dagger and the room persistence library I am looking to learning more internship part , full time job or remote I believe beating my limit help me learn more from. company's"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/developerContactTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:layout_marginTop="-20dp"
+                android:text="Contacts"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:fontFamily="casual"
+                android:gravity="start"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_below="@id/developerText" />
+
+            <TextView
+                android:id="@+id/developerGmailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:layout_marginTop="-20dp"
+                android:text="Email : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:fontFamily="casual"
+                android:gravity="start"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_below="@id/developerContactTitle" />
+
+            <TextView
+                android:id="@+id/developerGmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:layout_toEndOf="@id/developerGmailTitle"
+                android:layout_marginTop="-20dp"
+                android:text="ezelarry379@gmail.com"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:fontFamily="casual"
+                android:textIsSelectable="true"
+                android:gravity="start"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_below="@id/developerContactTitle" />
+
+            <TextView
+                android:id="@+id/developerLinkInTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:layout_marginTop="-20dp"
+                android:text="LinkedIn : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:fontFamily="casual"
+                android:gravity="start"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_below="@id/developerGmail" />
+
+            <TextView
+                android:id="@+id/developerLinkIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:layout_toEndOf="@id/developerGmailTitle"
+                android:layout_marginTop="-20dp"
+                android:text="https://www.linkedin.com/in/eze-larry-7517b41a0/"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:fontFamily="casual"
+                android:textIsSelectable="true"
+                android:gravity="start"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_below="@id/developerGmail" />
+
+            <TextView
+                android:id="@+id/developerGitHubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Git-Hub : "
+                android:paddingTop="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:fontFamily="casual"
+                android:gravity="start"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_below="@id/developerLinkInTitle" />
+
+            <TextView
+                android:id="@+id/developerGitHub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:padding="10dp"
+                android:layout_toEndOf="@id/developerGmailTitle"
+                android:layout_marginTop="-8dp"
+                android:text="https://github.com/eflexcode"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textColor="#040404"
+                android:fontFamily="casual"
+                android:textIsSelectable="true"
+                android:gravity="start"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_below="@id/developerLinkIn" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

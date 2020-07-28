@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AboutDeveloperActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MainActivityTheme" />
+        <activity
             android:name=".MessageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MainActivityTheme" />
